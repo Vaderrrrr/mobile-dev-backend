@@ -19,8 +19,23 @@ public class DriverServices {
         return "Driver connected!";
     }
 
+    /* Driver Login */
+    public Integer driverLogin(Driver driver) {
+        Driver driverNew = driverDao.getByDriverName(driver.getDriverName());
+        if (driverNew == null) {
+            return 0;
+        } else {
+            if (driverNew.getPassword().equals(driver.getPassword())) {
+                return 2;
+            } else {
+                return 1;
+            }
+        }
+    }
+
     /* Create New Driver */
     public void driverCreate(Driver driver) {
+        driver.setPassword("123456");
         driverDao.save(driver);
     }
 
@@ -48,14 +63,6 @@ public class DriverServices {
         driverDao.save(driverNew);
     }
 
-    /* Update Driver for Password
-    public void driverUpdatePassword(Driver driver) {
-        Driver driverNew = driverDao.getOne(driver.getDriverId());
-        driverNew.setPassword(driver.getPassword());
-        driverDao.save(driverNew);
-    }
-    */
-
     /* Update Driver for Password */
     public boolean driverUpdatePassword(Driver driver) {
         Driver driverNew = driverDao.getOne(driver.getDriverId());
@@ -70,6 +77,13 @@ public class DriverServices {
         }
     }
 
+    /* Update Driver for Password
+    public void driverUpdatePassword(Driver driver) {
+        Driver driverNew = driverDao.getOne(driver.getDriverId());
+        driverNew.setPassword(driver.getPassword());
+        driverDao.save(driverNew);
+    }
+    */
     /* Select Driver by Name
     public Driver driverSelectName(Driver driver) {
         return driverDao.getByDriverName(driver.getDriverName());

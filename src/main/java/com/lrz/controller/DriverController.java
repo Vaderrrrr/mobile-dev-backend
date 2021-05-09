@@ -18,6 +18,12 @@ public class DriverController {
         return driverServices.driver();
     }
 
+    /* Login Driver */
+    @GetMapping(value = "/loginDriver")
+    public Integer loginDriver(Driver driver) {
+        return driverServices.driverLogin(driver);
+    }
+
     /* Create New Driver */
     @GetMapping(value = "/createDriver")
     public String createDriver(Driver driver) {
