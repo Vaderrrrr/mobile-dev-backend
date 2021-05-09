@@ -54,11 +54,17 @@ public class ManagerController {
 
     /* Update Manager for Password */
     @GetMapping(value = "/updateManagerPassword")
+    public boolean updateManagerPassword(Manager manager) {
+        return managerServices.managerUpdatePassword(manager);
+    }
+
+    /* Update Manager for Password
+    @GetMapping(value = "/updateManagerPassword")
     public String updateManagerPassword(Manager manager) {
         managerServices.managerUpdatePassword(manager);
         return "Manager password successfully updated " + manager.getPassword();
     }
-
+    */
     /* Update Manager for Name *
     @PostMapping(value = "/updateManagerName")
     public String updateManagerName(@RequestBody Manager manager) {

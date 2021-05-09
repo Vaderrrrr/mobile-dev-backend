@@ -54,11 +54,17 @@ public class DriverController {
 
     /* Update Driver Password */
     @GetMapping(value = "/updateDriverPassword")
-    public String updateDriverPassword(Driver driver) {
-        driverServices.driverUpdatePassword(driver);
-        return "Driver password successfully updated " + driver.getPassword();
+    public boolean updateDriverPassword(Driver driver) {
+        return driverServices.driverUpdatePassword(driver);
     }
 
+    /* Update Driver Password
+    @GetMapping(value = "/updateDriverPassword")
+    public String updateDriverPassword(Driver driver) {
+        driverServices.driverUpdatePassword(driver);
+        return driver.getPassword();
+    }
+    */
     /* Select Driver by Name
     @GetMapping(value = "/selectDriverName")
     public String selectDriverName(Driver driver) {

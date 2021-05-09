@@ -29,7 +29,7 @@ public class ManagerServices {
         managerDao.deleteById(managerId);
     }
 
-    /* Select Manager by Id -------无效*/
+    /* Select Manager by Id */
     public Manager managerSelectId(Manager manager) {
         return managerDao.getOne(manager.getManagerId());
     }
@@ -49,12 +49,24 @@ public class ManagerServices {
     }
 
     /* Update Manager for Password */
+    public boolean managerUpdatePassword(Manager manager) {
+        Manager managerNew = managerDao.getOne(manager.getManagerId());
+        if (managerNew.getPassword().equals(manager.getPassword())) {
+            return false;
+        } else {
+            managerNew.setPassword(manager.getPassword());
+            managerDao.save(managerNew);
+            return true;
+        }
+    }
+
+    /* Update Manager for Password
     public void managerUpdatePassword(Manager manager) {
         Manager managerNew = managerDao.getOne(manager.getManagerId());
         managerNew.setPassword(manager.getPassword());
         managerDao.save(managerNew);
     }
-
+    */
     /* Update Manager for Name *
     public void managerUpdateName(Manager manager) {
         Manager managerOri = managerDao.getOne(manager.getManagerId());

@@ -48,11 +48,26 @@ public class DriverServices {
         driverDao.save(driverNew);
     }
 
-    /* Update Driver for Password */
+    /* Update Driver for Password
     public void driverUpdatePassword(Driver driver) {
         Driver driverNew = driverDao.getOne(driver.getDriverId());
         driverNew.setPassword(driver.getPassword());
         driverDao.save(driverNew);
+    }
+    */
+
+    /* Update Driver for Password */
+    public boolean driverUpdatePassword(Driver driver) {
+        Driver driverNew = driverDao.getOne(driver.getDriverId());
+        // If previous password and new password are different
+        if (driverNew.getPassword().equals(driver.getPassword())) {
+            return false;
+        } else {
+            // If two passwords are equal
+            driverNew.setPassword(driver.getPassword());
+            driverDao.save(driverNew);
+            return true;
+        }
     }
 
     /* Select Driver by Name
